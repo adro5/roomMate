@@ -1,0 +1,43 @@
+<?php
+session_start();
+$conn = mysqli_connect("localhost", "root", "", "roommates", 3306);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Search</title>
+</head>
+<link rel="stylesheet" href="searchstyles.css" />
+<body bgcolor="#666666" class="loginimage">
+<div id="background">
+<div align="center" class="pad">
+<form method="post" action="search.php">
+  <input type="text" name="search" placeholder="Search a zip code..">
+</form>
+</div>
+</div>
+
+<div class="cardimg">
+<div class="pics">
+<img src="pattern.png"/>
+</div>
+<div class="results">
+<p><?php
+if (isset($_SESSION["result"]) && !empty($_SESSION["result"]))
+{
+while ($row = mysqli_fetch_assoc($_SESSION["result"])) {
+	printf("Name: %s <br/>", $row['fname']);
+    printf("Age: %s <br/>", $row['Age']);
+    if ($row['Gender'] == "1") {
+    printf("Gender: M <br/><br/><br/>");
+    }
+    else { printf("Gender: F <br/><br/><br/>"); }
+}
+unset($_SESSION['result']);
+}
+?></p>
+
+</div>
+</div>
+</html>

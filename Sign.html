@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Sign Up</title>
+</head>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body bgcolor="#666666" class="loginimage">
+<div id="background">
+<h1 class="head">Create Your Profile</h1>
+<br />
+<br />
+<div align="center">
+<form action="signup.php" method="post">
+    <label class="text2" for="fname">&nbsp;First Name</label>
+    <input type="text" id="fname" name="fname">
+ 	 <br />
+     <br />
+     <label class="text2" for="uname">&nbsp; Username</label>
+    <input type="text" id="uname" name="uname">
+	<br />
+    <label class= "text2" align="middle" for="pname">&nbsp;&nbsp;&nbsp;Password</label>
+    <input align="middle" type="password" id="pname" name="pword">
+ 	 <br />
+     <br />
+     <label class="text2" for="age">&emsp;&emsp;&emsp;&nbsp;Age</label>
+    <input type="text" id="age" name="age">
+	<br />
+    <br />
+    <label class="text2" for="gen">&emsp;&emsp;&emsp;&nbsp;Gender</label>
+    <select id="gen" name="gen">
+    <option value="1">Male</option>
+    <option value="2">Female</option>
+  </select>
+ 	 <br />
+     <br />
+     <label class="text2" for="descr">&nbsp;Biography</label>
+    <input type="textarea" id="descr" name="descr">
+	<br />
+     <label class="text2" for="avspace">&nbsp;Are you looking to fill a room?</label>
+    <select id="avspace" name="avspace">
+    <option value="0" selected="selected">No</option>
+    <option value="1">Yes</option>
+  </select>
+	<br />
+    <br />
+    <label class= "text2" align="middle" for="zcode">&nbsp;Zip Code</label>
+    <input align="middle" type="text" id="zcode" name="zcode">
+ 	 <br />
+     <br />
+    &emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" class="button" value="Next ->">
+    <br />
+    <br />
+  </form>
+  </div>
+</div>
+</html>

@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=Roboto:100);
+#background {
+	background-color:#373F48;
+	color:white;
+	box-shadow: 0px 2px 4px #CCCCCC;
+	resize:both;
+	opacity: .85;
+	overflow:auto;
+		resize:none;
+}
+.loginimage {
+	background:url(2.jpeg);
+	background-size: cover;
+    background-position: 0% 0%;
+    background-repeat: none;
+	width: 100%;
+    height: 100%;
+    
+}
+h1.head {
+	font-size: 32px;
+		text-align:center;
+		font-family:'Roboto', sans-serif;
+		padding-top:20px;
+}
+input[type=text] {
+    width: 160px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+	font-family:'Roboto', sans-serif;
+	color:black;
+}
+
+input[type=text]:focus {
+    width: 40%;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+html,body {
+	margin:0;
+	padding:0;
+}
+div.pad {
+	padding: 20px;
+}
+div.results {
+	font-size: 25px;
+		text-align:left;
+		font-family:'Roboto', sans-serif;
+		color: black;
+		margin: -4% 5%;
+}
+div.pics {
+	width: 10%;
+	height: 100px;
+}
+div.cardimg {
+
+	padding-bottom: 5%;
+	background-color:#FFFFFF;
+	opacity: 0.75;
+}

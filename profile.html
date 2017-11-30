@@ -1,0 +1,200 @@
+<?php
+session_start();
+$conn = mysqli_connect("localhost", "root", "", "roommates", 3306);
+$result = mysqli_query($conn, "select photourl, username from user where username = '".$_SESSION["username"]."'");
+$row = mysqli_fetch_assoc($result);
+$img = $row["photourl"];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Profile</title>
+</head>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body bgcolor="#666666" class="loginimage">
+<div id="background">
+<h1 class="head"></h1>
+<br />
+<br />
+<div>
+<div align="center">
+<img src="<?php 
+if ($img == "bom.vo" || $img == "") { echo "uploads/480px-Placeholder_no_text.svg.png"; } else { echo $img; } ?>" style="border-radius: 50%; width: 8%; height:8%; margin-left: -20%; margin-bottom:-27%;"/>
+</div>
+
+<div>
+<p class="text2">First Name:&nbsp;
+<?php 
+$name = mysqli_query($conn, "select Userid, fname, username from user where username = '".$_SESSION["username"]."'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($name);
+$userid = $row['Userid'];
+echo $row['fname'];
+?></p>
+<p class="text2">Age:&nbsp;
+<?php 
+$age = mysqli_query($conn, "select Age, username from user where username = '".$_SESSION["username"]."'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($age);
+echo $row['Age'];
+?></p>
+<p class="text2">Gender:&nbsp;
+<?php 
+$gender = mysqli_query($conn, "select Gender, username from user where username = '".$_SESSION["username"]."'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($gender);
+if ($row['Gender'] == 1) { echo "M"; }
+else { echo "F"; }
+?></p>
+<p class="text2">Zip Code:&nbsp;
+<?php 
+$zip = mysqli_query($conn, "select ZIP, username from user where username = '".$_SESSION["username"]."'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($zip);
+echo $row['ZIP'];
+?></p>
+<br />
+</div>
+
+<div align="center">
+<h1 class="head">Bio</h1>
+<p class="text2"><?php 
+$descr = mysqli_query($conn, "select UserDescription, username from user where username = '".$_SESSION["username"]."'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($descr);
+echo $row['UserDescription'];
+?></p>
+</div>
+<br />
+
+<div style="margin-left:-65%;">
+<h1 class="head">Living Info <p class="text2">(if looking for a room·Mate)</p></h1>
+<p class="text2">Bedrooms Available:&nbsp;
+<?php 
+$bed = mysqli_query($conn, "select Bed, User_Userid from isliving where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($bed);
+echo $row['Bed'];
+?>
+</p>
+<p class="text2">Bathrooms Available:&nbsp;
+<?php 
+$bath = mysqli_query($conn, "select Bath, User_Userid from isliving where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($bath);
+echo $row['Bath'];
+?></p>
+<p class="text2">Number of Existing room·Mates:&nbsp;
+<?php 
+$room = mysqli_query($conn, "select NumRoomates, User_Userid from isliving where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($room);
+echo $row['NumRoomates'];
+?></p>
+<br />
+</div>
+
+<div style="margin-left:-17%; margin-top:-10%;">
+<h1 class="head">Preferences</h1>
+<p class="text2">Smoking?:&nbsp;
+<?php 
+$smoke = mysqli_query($conn, "select Smoking, User_Userid from preferences where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($smoke);
+if ($row['Smoking'] == 0) { echo "No"; }
+else { echo "Yes"; }
+?></p>
+<p class="text2">Noise Level:&nbsp;
+<?php 
+$noise = mysqli_query($conn, "select Noiselevel, User_Userid from preferences where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($noise);
+echo $row['Noiselevel'];
+?></p>
+<p class="text2">Zodiac Sign:&nbsp;
+<?php 
+$zodiac = mysqli_query($conn, "select Zodiac, User_Userid from preferences where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($zodiac);
+echo $row['Zodiac'];
+?></p>
+<p class="text2">Pets:&nbsp;
+<?php 
+$pet = mysqli_query($conn, "select Pets, User_Userid from preferences where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($pet);
+if($row['Pets'] == 0) { echo "No"; }
+else { echo "Yes"; }
+?></p>
+<p class="text2">Cohabitation Allowed?:&nbsp;
+<?php 
+$cohab = mysqli_query($conn, "select CoHab, User_Userid from preferences where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($cohab);
+if($row['CoHab'] == 0) { echo "No"; }
+else { echo "Yes"; }
+?></p>
+<p class="text2">City Prefered to Live In:&nbsp;
+<?php 
+$destc = mysqli_query($conn, "select DestinationCity, User_Userid from preferences where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($destc);
+echo $row['DestinationCity'];
+?></p>
+<p class="text2">State Prefered to Live In:&nbsp;
+<?php 
+$dests = mysqli_query($conn, "select DestinationState, User_Userid from preferences where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($dests);
+echo $row['DestinationState'];
+?></p>
+<br />
+</div>
+
+<div style="margin-left:25%; margin-top:-13%;">
+<h1 class="head">Social Media</h1>
+<p class="text2">Facebook:&nbsp;
+<?php 
+$fb = mysqli_query($conn, "select Facebook, User_Userid from social where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($fb);
+echo $row['Facebook'];
+?></p>
+<p class="text2">Twitter:&nbsp;
+<?php 
+$tweet = mysqli_query($conn, "select Twitter, User_Userid from social where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($tweet);
+echo $row['Twitter'];
+?></p>
+<p class="text2">Instagram:&nbsp;
+<?php 
+$insta = mysqli_query($conn, "select Instagram, User_Userid from social where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($insta);
+echo $row['Instagram'];
+?></p>
+<p class="text2">Tumblr:&nbsp;
+<?php 
+$tum = mysqli_query($conn, "select Tumblr, User_Userid from social where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($tum);
+echo $row['Tumblr'];
+?></p>
+<br />
+</div>
+
+<div style="margin-left:65%; margin-top:-9%;">
+<h1 class="head">Contact</h1>
+<p class="text2">Phone:&nbsp;
+<?php 
+$tum = mysqli_query($conn, "select Phone, User_Userid from contact where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($tum);
+echo $row['Phone'];
+?></p>
+<p class="text2">E-Mail:&nbsp;
+<a href="mailto:<?php 
+$tum = mysqli_query($conn, "select Email, User_Userid from contact where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($tum);
+echo $row['Email'];
+?>" target="_top"><?php echo $row['Email']; ?></a></p>
+<p class="text2">Best Reached By:&nbsp;
+<?php 
+$tum = mysqli_query($conn, "select ContactPreference, User_Userid from contact where User_Userid = '$userid'") or die("Failed to query database".mysqli_error($conn));
+$row = mysqli_fetch_assoc($tum);
+echo $row['ContactPreference'];
+?></p>
+<br />
+</div>
+<div align="center" style="margin-top:9%;">
+<form action="upload.php" method="post" enctype="multipart/form-data">
+	<input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
+</div>
+</div>
+</div>
+</html>
