@@ -23,7 +23,10 @@ if(!mysqli_query($conn, $sql))
 }
 else
 {
-	$_SESSION["conn"] = $conn;
+	$result = mysqli_query($conn, "select * from user where username = '$uname' and password = '$pword'") or die("Failed to query database".mysqli_error());
+
+	$row = mysqli_fetch_assoc($result);
+	$_SESSION["user"] = $row['Userid'];
 	if ($avspace == 1) {
 		header('Location: looking.html');
 	}
