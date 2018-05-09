@@ -11,48 +11,54 @@
 <h1 class="head">Create Your Profile</h1>
 <br />
 <br />
-<div align="center">
-<form action="signup.php" method="post">
-    <label class="text2" for="fname">&nbsp;First Name</label>
+<form name="formProf" action="signup.php" method="post" >
+    <label class="text2" for="fname">&nbsp;First Name&nbsp;</label>
     <input type="text" id="fname" name="fname">
- 	 <br />
-     <br />
-     <label class="text2" for="uname">&nbsp; Username</label>
+     <label class="text2" for="uname">&nbsp;Username&nbsp;</label>
     <input type="text" id="uname" name="uname">
-	<br />
-    <label class= "text2" align="middle" for="pname">&nbsp;&nbsp;&nbsp;Password</label>
+    <label class= "text2" for="pname">&emsp;&emsp;&nbsp;Password&nbsp;</label>
     <input align="middle" type="password" id="pname" name="pword">
- 	 <br />
-     <br />
-     <label class="text2" for="age">&emsp;&emsp;&emsp;&nbsp;Age</label>
-    <input type="text" id="age" name="age">
-	<br />
     <br />
-    <label class="text2" for="gen">&emsp;&emsp;&emsp;&nbsp;Gender</label>
+    <br />
+     <label class="text2" for="age">&emsp;&emsp;&emsp;&nbsp;&nbsp;Age&nbsp;</label>
+    <input type="text" id="age" name="age">
+    
+    <label class="text2" for="gen">&emsp;&nbsp;&nbsp;Gender&nbsp;</label>
     <select id="gen" name="gen">
     <option value="1">Male</option>
     <option value="2">Female</option>
+    <option value="2">Other</option>
   </select>
- 	 <br />
-     <br />
-     <label class="text2" for="descr">&nbsp;Biography</label>
-    <input type="textarea" id="descr" name="descr">
-	<br />
-     <label class="text2" for="avspace">&nbsp;Are you looking to fill a room?</label>
+  
+  <label class="text2" for="avspace">&nbsp;Filling a Room?&nbsp;</label>
     <select id="avspace" name="avspace">
     <option value="0" selected="selected">No</option>
     <option value="1">Yes</option>
   </select>
-	<br />
-    <br />
-    <label class= "text2" align="middle" for="zcode">&nbsp;Zip Code</label>
-    <input align="middle" type="text" id="zcode" name="zcode">
+  <br />
+  <br />
+  <label class= "text2" for="zcode">&emsp;&nbsp;Zip Code&nbsp;</label>
+    <input type="text" id="zcode" name="zcode">
+ 	 <br />
+     <br /><br />
+    <textarea form="formProf" name="descr" id="bio" onclick="Clear()" onblur="FocusChange()">Bio:</textarea>
  	 <br />
      <br />
-    &emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" class="button" value="Next ->">
+     <br />
+    <input type="submit" class="button" value="Next ->"/>
     <br />
     <br />
   </form>
-  </div>
+  <script>
+  function Clear() {
+	  document.getElementById("bio").value = "";
+  }
+  function FocusChange() {
+	  var foc = document.getElementById("bio");
+	  if (foc.value == "" || foc.value == " ") {
+		  foc.value = "Bio:";
+	  }
+  }
+  </script>
 </div>
 </html>
