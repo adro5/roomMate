@@ -41,11 +41,12 @@
     <input type="text" id="zcode" name="zcode">
  	 <br />
      <br /><br />
-    <textarea form="formProf" name="descr" id="bio" onclick="Clear()" onblur="FocusChange()">Bio:</textarea>
+    <textarea form="formProf" name="descr2" id="bio" onclick="Clear()" onblur="FocusChange()">Bio:</textarea>
+    <input type="textarea" name="descr" id="bioH" hidden="hidden" />
  	 <br />
      <br />
      <br />
-    <input type="submit" class="button" value="Next ->"/>
+    <div align="center"><input type="submit" class="button" value="Next ->"/></div>
     <br />
     <br />
   </form>
@@ -58,6 +59,7 @@
 	  if (foc.value == "" || foc.value == " ") {
 		  foc.value = "Bio:";
 	  }
+		document.getElementById("bioH").value = foc.value;
   }
   </script>
 </div>
